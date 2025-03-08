@@ -46,10 +46,6 @@ app.get("/", (req, res) => {
     <a href='/auth/google'>Register/Login</a>`);
 });
 
-app.get('/migration', (req, res) => {
-  main()
-});
-
 app.listen(process.env.PORT, () => {
   logger.info("Server started running");
 });
