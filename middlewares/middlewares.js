@@ -23,7 +23,7 @@ function checkAPIKey(req, res, next) {
     $and: [{
       key: apiKey
     }, {
-      $or: [{ revoke: false }, { revoked: { $exists: false }}]
+      revoke: { $ne: true }
     }]
   }).then(
     function (records) {
