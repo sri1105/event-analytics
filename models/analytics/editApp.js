@@ -6,6 +6,46 @@ import { update } from "../../db/crud.js";
 import logger from "../../logger.js";
 
 /**
+ * @swagger
+ * /api/analytics/edit-app:
+ *   post:
+ *     tags:
+ *      - Analytics
+ *     description: Edit the app details
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               appId:
+ *                 type: string
+ *                 description: App Id to edit
+ *               appName:
+ *                 type: string
+ *                 description: Name of the app
+ *               appType:
+ *                 type: string
+ *                 description: Type of the app
+ *             required:
+ *               - appId
+ *             oneOf:
+ *               - appName
+ *               - appType
+ *     parameters:
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User API Key
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+
+/**
  * Function responsible for handling the incoming request
  * @param {Object} req Request Object
  * @param {Object} res Response object

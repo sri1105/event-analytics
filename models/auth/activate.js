@@ -7,6 +7,31 @@ import { generateId } from "../globalUtils.js";
 import moment from "moment";
 
 /**
+ * @swagger
+ * /api/auth/activate:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     description: Activate the API key for the user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 description: User Id
+ *             required:
+ *               - userId
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+
+
+/**
  * Function responsible for handling the incoming request
  * @param {Object} req Request Object
  * @param {Object} res Response object

@@ -5,6 +5,31 @@ import { count, getData } from "../../db/crud.js";
 import constants from "../../constants.js";
 
 /**
+ * @swagger
+ * /api/analytics/user-stats:
+ *   get:
+ *     tags:
+ *      - Analytics
+ *     description: Get the user stats
+ *     parameters:
+ *       - in: query
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         description: Id of the user
+ *         required: true
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         description: User API Key
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+
+/**
  * Function responsible for handling the incoming request
  * @param {Object} req Request Object
  * @param {Object} res Response object

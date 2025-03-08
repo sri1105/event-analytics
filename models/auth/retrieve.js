@@ -4,6 +4,24 @@ import { getData } from "../../db/crud.js";
 import logger from "../../logger.js";
 import { processesResponse as response } from "../../contollers/controller.js";
 
+/**
+ * @swagger
+ * /api/auth/retrieve:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     description: Retrieve the API key for the user
+ *     parameters:
+ *       - in: query
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User Id
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 
 /**
  * Function responsible for handling the incoming request
@@ -11,7 +29,7 @@ import { processesResponse as response } from "../../contollers/controller.js";
  * @param {Object} res Response object
  */
 function processesRequest(req, res) {
-  if (!req.query.userId) {
+  if (!req.query && !req.query.userId) {
     processesResponse(req, res, constants.STATUS_CODES.SYSTEM_ERROR, {});
   } else {
     getAPIkey(req, res);

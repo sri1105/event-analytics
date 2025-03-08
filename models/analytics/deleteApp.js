@@ -5,6 +5,37 @@ import { deleteAll, getData } from "../../db/crud.js";
 import logger from "../../logger.js";
 
 /**
+ * @swagger
+ * /api/analytics/delete-app:
+ *   post:
+ *     tags:
+ *      - Analytics
+ *     description: Delete the app for the user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               appId:
+ *                 type: string
+ *                 description: App Id to delete
+ *     parameters:
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User API Key
+ *     required:
+ *       - appId
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+
+/**
  * Function responsible for handling the incoming request
  * @param {Object} req Request Object
  * @param {Object} res Response object

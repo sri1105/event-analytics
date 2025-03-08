@@ -6,6 +6,46 @@ import constants from "../../constants.js";
 import moment from "moment";
 
 /**
+ * @swagger
+ * /api/analytics/event-summary:
+ *   get:
+ *     tags:
+ *      - Analytics
+ *     description: Get the event summary
+ *     parameters:
+ *       - in: query
+ *         name: event
+ *         schema:
+ *           type: string
+ *         description: Name of the event
+ *         required: true
+ *       - in: query
+ *         name: startDate
+ *         schema:
+ *           type: string
+ *         description: Start date format YYYY-MM-DD
+ *       - in: query
+ *         name: endDate
+ *         schema:
+ *           type: string
+ *         description: End date format YYYY-MM-DD
+ *       - in: query
+ *         name: appId
+ *         schema:
+ *           type: string
+ *         description: App Id
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         description: User API Key
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+
+/**
  * Function responsible for handling the incoming request
  * @param {Object} req Request Object
  * @param {Object} res Response object
@@ -57,21 +97,21 @@ function getEventSummary(req, res, userId) {
         userId: userId,
       },
     ];
-  
+
   // Has start date ?
   if (query.startDate) {
     condition.push({
       createdAt: {
-        $gte: moment(query.startDate, 'YYYY-MM-DD').startOf('d').toDate(),
+        $gte: moment(query.startDate, "YYYY-MM-DD").startOf("d").toDate(),
       },
     });
   }
-  
+
   // Has end date ?
   if (query.endDate) {
     condition.push({
       createdAt: {
-        $lte: moment(query.endDate, 'YYYY-MM-DD').endOf('d').toDate(),
+        $lte: moment(query.endDate, "YYYY-MM-DD").endOf("d").toDate(),
       },
     });
   }
@@ -92,13 +132,20 @@ function getEventSummary(req, res, userId) {
           delete record.userId;
           delete record.createdAt;
         });
-        processesResponse(req, res, constants.STATUS_CODES.SUCCESS, {events: records});
+        processesResponse(req, res, constants.STATUS_CODES.SUCCESS, {
+          events: records,
+        });
       } else {
-        processesResponse(req, res, constants.STATUS_CODES.SUCCESS, {events: []});
+        processesResponse(req, res, constants.STATUS_CODES.SUCCESS, {
+          events: [],
+        });
       }
     },
     function (error) {
-      logger.error(`Unable to get even summary data for event ${body.event} `, error);
+      logger.error(
+        `Unable to get even summary data for event ${body.event} `,
+        error
+      );
       processesResponse(req, res, constants.STATUS_CODES.SYSTEM_ERROR);
     }
   );

@@ -5,6 +5,37 @@ import { processesResponse as response } from "../../contollers/controller.js";
 import { update } from "../../db/crud.js";
 
 /**
+ * @swagger
+ * /api/auth/revoke:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     description: Revoke the API key for the user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 description: User Id
+ *             required:
+ *               - userId
+ *     parameters:
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User API Key
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+
+/**
  * Function responsible for handling the incoming request
  * @param {Object} req Request Object
  * @param {Object} res Response object

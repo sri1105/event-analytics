@@ -5,6 +5,51 @@ import { getData, insert } from "../../db/crud.js";
 import constants from "../../constants.js";
 import moment from "moment";
 
+/**
+ * @swagger
+ * /api/analytics/collect:
+ *   post:
+ *     tags:
+ *      - Analytics
+ *     description: Create a new event for the user
+ *     parameters:
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User API Key
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 description: User Id
+ *               appId:
+ *                 type: string
+ *                 description: App Id
+ *               event:
+ *                 type: string
+ *                 description: Name of the event
+ *               url:
+ *                 type: string
+ *                 description: URL of the event
+ *               referer:
+ *                 type: string
+ *                 description: Referer URL
+ *             required:
+ *               - userId
+ *               - appId
+ *               - event
+ *               - url
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 
 /**
  * Function responsible for handling the incoming request
@@ -12,7 +57,7 @@ import moment from "moment";
  * @param {Object} res Response object
  */
 function processesRequest(req, res) {
-    let body = req.body;
+  let body = req.body;
 
   if (!body.userId || !body.appId || !body.event || !body.url) {
     processesResponse(req, res, constants.STATUS_CODES.SYSTEM_ERROR, {});
@@ -28,14 +73,14 @@ function processesRequest(req, res) {
  */
 function createEvent(req, res) {
   let body = req.body,
-  data = {
-    userId: body.userId,
-    appId: body.appId,
-    event: body.event,
-    url: body.url,
-    referer: body.referer || "",
-    createdAt: moment().toDate(),
-  };
+    data = {
+      userId: body.userId,
+      appId: body.appId,
+      event: body.event,
+      url: body.url,
+      referer: body.referer || "",
+      createdAt: moment().toDate(),
+    };
 
   insert(constants.COLLECTIONS.EVENTS, data).then(
     function () {

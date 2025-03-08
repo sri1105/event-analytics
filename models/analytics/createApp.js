@@ -7,6 +7,41 @@ import logger from "../../logger.js";
 import { generateId } from "../globalUtils.js";
 
 /**
+ * @swagger
+ * /api/analytics/create-app:
+ *   post:
+ *     tags:
+ *      - Analytics
+ *     description: Create a new app for the user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               appName:
+ *                 type: string
+ *                 description: Name of the app
+ *               appType:
+ *                 type: string
+ *                 description: Type of the app
+ *             required:
+ *               - appName
+ *               - appType
+ *     parameters:
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User API Key
+ *     responses:
+ *       200:
+ *         description: Success
+ */
+
+/**
  * Function responsible for handling the incoming request
  * @param {Object} req Request Object
  * @param {Object} res Response object
