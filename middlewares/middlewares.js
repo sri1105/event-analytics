@@ -20,8 +20,11 @@ function checkAPIKey(req, res, next) {
   }
 
   getData(constants.COLLECTIONS.USERS, {
-    key: apiKey,
-    $or: [{ revoke: false }, { revoked: { $exists: false } }],
+    $and: [{
+      key: apiKey
+    }, {
+      $or: [{ revoke: false }, { revoked: { $exists: false }}]
+    }]
   }).then(
     function (records) {
       if (records && records.length > 0) {
