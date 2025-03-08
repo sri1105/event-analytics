@@ -33,7 +33,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "https://event-analytics-z1zd.onrender.com",
       },
     ],
     tags: [
