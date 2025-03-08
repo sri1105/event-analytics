@@ -9,7 +9,6 @@ import logger from "./logger.js";
 import passport from "passport";
 import session from "express-session";
 import { performGoogleAuthentication } from "./middlewares/middlewares.js";
-import main from "./migration.js";
 
 dotenv.config();
 connectDB();
