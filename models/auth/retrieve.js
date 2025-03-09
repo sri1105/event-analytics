@@ -6,7 +6,7 @@ import { processesResponse as response } from "../../contollers/controller.js";
 
 /**
  * @swagger
- * /api/auth/retrieve:
+ * /api/auth/api-key:
  *   get:
  *     tags:
  *       - Auth
